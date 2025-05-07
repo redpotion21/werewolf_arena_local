@@ -1,0 +1,403 @@
+{
+    "session_id": "10",
+    "seer": {
+        "name": "Scott",
+        "role": "Seer",
+        "personality": null,
+        "model": "llama3.3:70b-instruct-q2_K",
+        "observations": [],
+        "bidding_rationale": "",
+        "gamestate": {
+            "round_number": 0,
+            "current_players": [
+                "Jacob",
+                "Sam",
+                "Hayley",
+                "Derek",
+                "Scott",
+                "Dan",
+                "Tyler",
+                "Mason"
+            ],
+            "debate": [],
+            "other_wolf": null
+        },
+        "previously_unmasked": {}
+    },
+    "doctor": {
+        "name": "Dan",
+        "role": "Doctor",
+        "personality": null,
+        "model": "llama3.3:70b-instruct-q2_K",
+        "observations": [],
+        "bidding_rationale": "",
+        "gamestate": {
+            "round_number": 0,
+            "current_players": [
+                "Jacob",
+                "Sam",
+                "Hayley",
+                "Derek",
+                "Scott",
+                "Dan",
+                "Tyler",
+                "Mason"
+            ],
+            "debate": [],
+            "other_wolf": null
+        }
+    },
+    "villagers": [
+        {
+            "name": "Jacob",
+            "role": "Villager",
+            "personality": null,
+            "model": "llama3.3:70b-instruct-q2_K",
+            "observations": [],
+            "bidding_rationale": "",
+            "gamestate": {
+                "round_number": 0,
+                "current_players": [
+                    "Jacob",
+                    "Sam",
+                    "Hayley",
+                    "Derek",
+                    "Scott",
+                    "Dan",
+                    "Tyler",
+                    "Mason"
+                ],
+                "debate": [],
+                "other_wolf": null
+            }
+        },
+        {
+            "name": "Sam",
+            "role": "Villager",
+            "personality": null,
+            "model": "llama3.3:70b-instruct-q2_K",
+            "observations": [],
+            "bidding_rationale": "",
+            "gamestate": {
+                "round_number": 0,
+                "current_players": [
+                    "Jacob",
+                    "Sam",
+                    "Hayley",
+                    "Derek",
+                    "Scott",
+                    "Dan",
+                    "Tyler",
+                    "Mason"
+                ],
+                "debate": [],
+                "other_wolf": null
+            }
+        },
+        {
+            "name": "Hayley",
+            "role": "Villager",
+            "personality": null,
+            "model": "llama3.3:70b-instruct-q2_K",
+            "observations": [],
+            "bidding_rationale": "",
+            "gamestate": {
+                "round_number": 0,
+                "current_players": [
+                    "Jacob",
+                    "Sam",
+                    "Hayley",
+                    "Derek",
+                    "Scott",
+                    "Dan",
+                    "Tyler",
+                    "Mason"
+                ],
+                "debate": [],
+                "other_wolf": null
+            }
+        },
+        {
+            "name": "Derek",
+            "role": "Villager",
+            "personality": null,
+            "model": "llama3.3:70b-instruct-q2_K",
+            "observations": [],
+            "bidding_rationale": "",
+            "gamestate": {
+                "round_number": 0,
+                "current_players": [
+                    "Jacob",
+                    "Sam",
+                    "Hayley",
+                    "Derek",
+                    "Scott",
+                    "Dan",
+                    "Tyler",
+                    "Mason"
+                ],
+                "debate": [],
+                "other_wolf": null
+            }
+        }
+    ],
+    "werewolves": [
+        {
+            "name": "Tyler",
+            "role": "Werewolf",
+            "personality": null,
+            "model": "llama3.3:70b-instruct-q2_K",
+            "observations": [],
+            "bidding_rationale": "",
+            "gamestate": {
+                "round_number": 0,
+                "current_players": [
+                    "Jacob",
+                    "Sam",
+                    "Hayley",
+                    "Derek",
+                    "Scott",
+                    "Dan",
+                    "Tyler",
+                    "Mason"
+                ],
+                "debate": [],
+                "other_wolf": "Mason"
+            }
+        },
+        {
+            "name": "Mason",
+            "role": "Werewolf",
+            "personality": null,
+            "model": "llama3.3:70b-instruct-q2_K",
+            "observations": [],
+            "bidding_rationale": "",
+            "gamestate": {
+                "round_number": 0,
+                "current_players": [
+                    "Jacob",
+                    "Sam",
+                    "Hayley",
+                    "Derek",
+                    "Scott",
+                    "Dan",
+                    "Tyler",
+                    "Mason"
+                ],
+                "debate": [],
+                "other_wolf": "Tyler"
+            }
+        }
+    ],
+    "players": {
+        "Jacob": {
+            "name": "Jacob",
+            "role": "Villager",
+            "personality": null,
+            "model": "llama3.3:70b-instruct-q2_K",
+            "observations": [],
+            "bidding_rationale": "",
+            "gamestate": {
+                "round_number": 0,
+                "current_players": [
+                    "Jacob",
+                    "Sam",
+                    "Hayley",
+                    "Derek",
+                    "Scott",
+                    "Dan",
+                    "Tyler",
+                    "Mason"
+                ],
+                "debate": [],
+                "other_wolf": null
+            }
+        },
+        "Sam": {
+            "name": "Sam",
+            "role": "Villager",
+            "personality": null,
+            "model": "llama3.3:70b-instruct-q2_K",
+            "observations": [],
+            "bidding_rationale": "",
+            "gamestate": {
+                "round_number": 0,
+                "current_players": [
+                    "Jacob",
+                    "Sam",
+                    "Hayley",
+                    "Derek",
+                    "Scott",
+                    "Dan",
+                    "Tyler",
+                    "Mason"
+                ],
+                "debate": [],
+                "other_wolf": null
+            }
+        },
+        "Hayley": {
+            "name": "Hayley",
+            "role": "Villager",
+            "personality": null,
+            "model": "llama3.3:70b-instruct-q2_K",
+            "observations": [],
+            "bidding_rationale": "",
+            "gamestate": {
+                "round_number": 0,
+                "current_players": [
+                    "Jacob",
+                    "Sam",
+                    "Hayley",
+                    "Derek",
+                    "Scott",
+                    "Dan",
+                    "Tyler",
+                    "Mason"
+                ],
+                "debate": [],
+                "other_wolf": null
+            }
+        },
+        "Derek": {
+            "name": "Derek",
+            "role": "Villager",
+            "personality": null,
+            "model": "llama3.3:70b-instruct-q2_K",
+            "observations": [],
+            "bidding_rationale": "",
+            "gamestate": {
+                "round_number": 0,
+                "current_players": [
+                    "Jacob",
+                    "Sam",
+                    "Hayley",
+                    "Derek",
+                    "Scott",
+                    "Dan",
+                    "Tyler",
+                    "Mason"
+                ],
+                "debate": [],
+                "other_wolf": null
+            }
+        },
+        "Tyler": {
+            "name": "Tyler",
+            "role": "Werewolf",
+            "personality": null,
+            "model": "llama3.3:70b-instruct-q2_K",
+            "observations": [],
+            "bidding_rationale": "",
+            "gamestate": {
+                "round_number": 0,
+                "current_players": [
+                    "Jacob",
+                    "Sam",
+                    "Hayley",
+                    "Derek",
+                    "Scott",
+                    "Dan",
+                    "Tyler",
+                    "Mason"
+                ],
+                "debate": [],
+                "other_wolf": "Mason"
+            }
+        },
+        "Mason": {
+            "name": "Mason",
+            "role": "Werewolf",
+            "personality": null,
+            "model": "llama3.3:70b-instruct-q2_K",
+            "observations": [],
+            "bidding_rationale": "",
+            "gamestate": {
+                "round_number": 0,
+                "current_players": [
+                    "Jacob",
+                    "Sam",
+                    "Hayley",
+                    "Derek",
+                    "Scott",
+                    "Dan",
+                    "Tyler",
+                    "Mason"
+                ],
+                "debate": [],
+                "other_wolf": "Tyler"
+            }
+        },
+        "Dan": {
+            "name": "Dan",
+            "role": "Doctor",
+            "personality": null,
+            "model": "llama3.3:70b-instruct-q2_K",
+            "observations": [],
+            "bidding_rationale": "",
+            "gamestate": {
+                "round_number": 0,
+                "current_players": [
+                    "Jacob",
+                    "Sam",
+                    "Hayley",
+                    "Derek",
+                    "Scott",
+                    "Dan",
+                    "Tyler",
+                    "Mason"
+                ],
+                "debate": [],
+                "other_wolf": null
+            }
+        },
+        "Scott": {
+            "name": "Scott",
+            "role": "Seer",
+            "personality": null,
+            "model": "llama3.3:70b-instruct-q2_K",
+            "observations": [],
+            "bidding_rationale": "",
+            "gamestate": {
+                "round_number": 0,
+                "current_players": [
+                    "Jacob",
+                    "Sam",
+                    "Hayley",
+                    "Derek",
+                    "Scott",
+                    "Dan",
+                    "Tyler",
+                    "Mason"
+                ],
+                "debate": [],
+                "other_wolf": null
+            },
+            "previously_unmasked": {}
+        }
+    },
+    "rounds": [
+        {
+            "players": [
+                "Jacob",
+                "Sam",
+                "Hayley",
+                "Derek",
+                "Tyler",
+                "Mason",
+                "Dan",
+                "Scott"
+            ],
+            "eliminated": null,
+            "unmasked": null,
+            "protected": null,
+            "exiled": null,
+            "debate": [],
+            "votes": [],
+            "bids": [],
+            "success": false
+        }
+    ],
+    "error_message": "Traceback (most recent call last):\n  File \"C:\\Users\\User\\werewolf_arena\\werewolf\\runner.py\", line 229, in run_game\n    winner = gamemaster.run_game()\n             ^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\User\\werewolf_arena\\werewolf\\game.py\", line 333, in run_game\n    self.run_round()\n  File \"C:\\Users\\User\\werewolf_arena\\werewolf\\game.py\", line 303, in run_round\n    action()\n  File \"C:\\Users\\User\\werewolf_arena\\werewolf\\game.py\", line 64, in eliminate\n    eliminated, log = wolf.eliminate()\n                      ^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\User\\werewolf_arena\\werewolf\\model.py\", line 330, in eliminate\n    eliminate, log = self._generate_action(\"remove\", options)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\User\\werewolf_arena\\werewolf\\model.py\", line 203, in _generate_action\n    return generate(\n           ^^^^^^^^^\n  File \"C:\\Users\\User\\werewolf_arena\\werewolf\\lm.py\", line 95, in generate\n    prompt=prompt, raw_resp=\"-------\".join(raw_responses), result=None\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: sequence item 0: expected str instance, NoneType found\n",
+    "winner": ""
+}

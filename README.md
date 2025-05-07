@@ -39,9 +39,9 @@ The program will read from this environment variable.
 ## Run a single game
 
 fitst, turn off ollama and run
-`ollama serve
+```ollama serve```
 then on other cmd
-`python3 main.py --run --v_models=phi4 --w_models=phi4`
+```python3 main.py --run --v_models=phi4 --w_models=phi4```
 
 
 ## Run games between all model combinations

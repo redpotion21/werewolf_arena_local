@@ -62,6 +62,8 @@ model_to_id = {
     "gpt4": "gpt-4-turbo-2024-04-09",
     "gpt4o": "gpt-4o-2024-05-13",
     "gpt3.5": "gpt-3.5-turbo-0125",
+    "llama3.3": "llama3.3:70b-instruct-q2_K",
+    "phi4": "phi4"
 }
 
 

@@ -21,15 +21,48 @@ import vertexai
 from vertexai.preview import generative_models
 from anthropic import AnthropicVertex
 
+import ollama
 
 def generate(model, **kwargs):
-    if "gpt" in model:
+    if "llama" in model:
+        return generate_llama(model, **kwargs)
+    elif "phi4" in model:
+        return generate_phi(model, **kwargs)
+    elif "gpt" in model:
         return generate_openai(model, **kwargs)
     elif "claude" in model:
         return generate_authropic(model, **kwargs)
     else:
         return generate_vertexai(model, **kwargs)
 
+def generate_llama(model: str, prompt: str, **kwargs):#ollama local
+    #print(**kwargs)
+    response = ollama.chat(model='llama3.3:70b-instruct-q2_K', messages=[
+    {
+    'role': 'user',
+    'content': prompt,
+    'format': 'json'
+    },
+    ])
+    #print(response)
+    #print(response)
+    txt = response['message']['content']
+    #print(txt)
+    return txt
+def generate_phi(model: str, prompt: str, **kwargs):#phi local
+    #print(**kwargs)
+    response = ollama.chat(model='phi4', messages=[
+    {
+    'role': 'user',
+    'content': prompt,
+    'format': 'json'
+    },
+    ])
+    #print(response)
+    #print(response)
+    txt = response['message']['content']
+    #print(txt)
+    return txt
 
 # openai
 def generate_openai(model: str, prompt: str, json_mode: bool = True, **kwargs):
@@ -43,7 +76,6 @@ def generate_openai(model: str, prompt: str, json_mode: bool = True, **kwargs):
         response_format=response_format,
         model=model,
     )
-
     txt = response.choices[0].message.content
     return txt
 

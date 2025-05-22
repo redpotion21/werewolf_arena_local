@@ -124,6 +124,7 @@ class Player(Deserializable):
     self.observations: List[str] = []
     self.bidding_rationale = ""
     self.gamestate: Optional[GameView] = None
+    self.summary = ""
 
   def initialize_game_view(
       self, round_number, current_players, other_wolf=None
@@ -258,6 +259,31 @@ class Player(Deserializable):
 
   def to_dict(self) -> Any:
     return to_dict(self)
+  
+  def deduction(self) -> tuple[str | None, LmLog]: #need to deduct N times of remaining players
+    """Summarize the game state."""
+    options = [
+        player
+        for player in self.gamestate.current_players
+        if player != self.name
+    ]
+    for i in range(len(options)):
+      if i !=len(options)-1:
+        result, log = self._generate_action("deduct", options = options[i])
+        if result is not None:
+          deduct = result.get("deduction", None)
+          if deduct is not None:
+            deduct = deduct.strip('"')
+            self._add_observation(f"deduction: {deduct}")
+      else:
+        result, log = self._generate_action("deduct", options = options[i])
+        if result is not None:
+          deduct = result.get("deduction", None)
+          if deduct is not None:
+            deduct = deduct.strip('"')
+            self._add_observation(f"deduction: {deduct}")
+          return deduct, log
+        return result, log
 
   @classmethod
   def from_json(cls, data: Dict[Any, Any]):

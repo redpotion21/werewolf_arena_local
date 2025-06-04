@@ -124,6 +124,8 @@ class Player(Deserializable):
     self.observations: List[str] = []
     self.bidding_rationale = ""
     self.gamestate: Optional[GameView] = None
+    self.summary = ""
+    self.RecordDeduction: List[str] = []
 
   def initialize_game_view(
       self, round_number, current_players, other_wolf=None
@@ -140,12 +142,22 @@ class Player(Deserializable):
     self.observations.append(
         f"Round {self.gamestate.round_number}: {observation}"
     )
+  def _add_RecDed(self, observation: str):
+    """Adds an observation for the given round."""
+    if not self.gamestate:
+      raise ValueError(
+          "GameView not initialized. Call initialize_game_view() first."
+      )
+
+    self.obserRecordDeductionvations.append(
+        f"Round {self.gamestate.round_number}: {observation}"
+    )
 
   def add_announcement(self, announcement: str):
     """Adds the current game announcement to the player's observations."""
     self._add_observation(f"Moderator Announcement: {announcement}")
 
-  def _get_game_state(self) -> Dict[str, Any]:
+  def _get_game_state(self,is_ded = False) -> Dict[str, Any]:
     """Gets the current game state from the player's perspective."""
     if not self.gamestate:
       raise ValueError(
@@ -163,9 +175,10 @@ class Player(Deserializable):
         else f"{author}: {dialogue}"
         for author, dialogue in self.gamestate.debate
     ]
-
-    formatted_observations = group_and_format_observations(self.observations)
-
+    if is_ded:
+      formatted_observations = group_and_format_observations(self.observations)
+    else:
+      formatted_observations = group_and_format_observations(self.RecordDeduction)
     return {
         "name": self.name,
         "role": self.role,
@@ -184,9 +197,10 @@ class Player(Deserializable):
       self,
       action: str,
       options: Optional[List[str]] = None,
+      is_ded=False,
   ) -> tuple[Any | None, LmLog]:
     """Helper function to generate player actions."""
-    game_state = self._get_game_state()
+    game_state = self._get_game_state(is_ded)
     if options:
       game_state["options"] = (", ").join(options)
     prompt_template, response_schema = ACTION_PROMPTS_AND_SCHEMAS[action]
@@ -211,6 +225,8 @@ class Player(Deserializable):
     )
 
   def vote(self) -> tuple[str | None, LmLog]:
+    self.inforec()
+    self.deduction()
     """Vote for a player."""
     if not self.gamestate:
       raise ValueError(
@@ -230,6 +246,8 @@ class Player(Deserializable):
     return vote, log
 
   def bid(self) -> tuple[int | None, LmLog]:
+    self.inforec()
+    self.deduction()
     """Place a bid."""
     bid, log = self._generate_action("bid", options=["0", "1", "2", "3", "4"])
     if bid is not None:
@@ -242,6 +260,7 @@ class Player(Deserializable):
     result, log = self._generate_action("debate", [])
     if result is not None:
       say = result.get("say", None)
+      print(say)
       return say, log
     return result, log
 
@@ -258,7 +277,43 @@ class Player(Deserializable):
 
   def to_dict(self) -> Any:
     return to_dict(self)
-
+  
+  def deduction(self) -> tuple[str | None, LmLog]: #need to deduct N times of remaining players
+    """Summarize the game state."""
+    options = [
+        player
+        for player in self.gamestate.current_players
+        if player != self.name
+    ]
+    for i in range(len(options)):
+      if i !=len(options)-1:
+        result, log = self._generate_action("deduct", options = options[i])
+        if result is not None:
+          deduct = result.get("deduction", None)
+          if deduct is not None:
+            deduct = deduct.strip('"')
+            self._add_observation(f"deduction: {deduct}")
+      else:
+        result, log = self._generate_action("deduct", options = options[i])
+        if result is not None:
+          deduct = result.get("deduction", None)
+          if deduct is not None:
+            deduct = deduct.strip('"')
+            self._add_observation(f"deduction: {deduct}")
+          return deduct, log
+        return result, log
+  
+  def inforec(self):
+    result, log = self._generate_action("record", [], is_ded = True)
+    print(result)
+    if result is not None:
+      rec = result.get("record", None)
+      if rec is not None:
+        rec = rec.strip('"')
+        self._add_RecDed(f"record: {rec}")
+      return rec, log
+    return result, log
+  
   @classmethod
   def from_json(cls, data: Dict[Any, Any]):
     name = data["name"]
@@ -308,9 +363,9 @@ class Werewolf(Player):
         name=name, role=WEREWOLF, model=model, personality=personality
     )
 
-  def _get_game_state(self, **kwargs) -> Dict[str, Any]:
+  def _get_game_state(self, any1=0, any2=0) -> Dict[str, Any]:
     """Gets the current game state, including werewolf-specific context."""
-    state = super()._get_game_state(**kwargs)
+    state = super()._get_game_state()
     state["werewolf_context"] = self._get_werewolf_context()
     return state
 

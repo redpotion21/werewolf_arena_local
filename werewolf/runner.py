@@ -49,7 +49,7 @@ _WEREWOLF_MODELS = flags.DEFINE_list(
 _ARENA = flags.DEFINE_boolean(
     "arena", False, "Only run games using different models for villagers and werewolves"
 )
-_THREADS = flags.DEFINE_integer("threads", 2, "Number of threads to run.")
+_THREADS = flags.DEFINE_integer("threads", 1, "Number of threads to run.")
 
 DEFAULT_WEREWOLF_MODELS = ["flash", "pro1.5"]
 DEFAULT_VILLAGER_MODELS = ["flash", "pro1.5"]

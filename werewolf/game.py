@@ -166,27 +166,15 @@ class GameMaster:
         summary, log = summary_task.result()
         tqdm.tqdm.write(f"{player_name} summary: {summary}")
         self.this_round_log.summaries.append((player_name, log))
-  def run_deduction(self):
-    """Collect summaries from players after the debate."""
-
-    with ThreadPoolExecutor(max_workers=self.num_threads) as executor:
-      player_summaries = {
-          name: executor.submit(self.state.players[name].deduction)
-          for name in self.this_round.players
-      }
-
-      for player_name, summary_task in player_summaries.items():
-        summary, log = summary_task.result()
-        tqdm.tqdm.write(f"{player_name} deduction: {summary}")
-        self.this_round_log.summaries.append((player_name, log))
 
   def run_day_phase(self):
     """Run the day phase which consists of the debate and voting."""
-
-    for idx in range(MAX_DEBATE_TURNS):
-      next_speaker = self.get_next_speaker()
-      if not next_speaker:
-        raise ValueError("get_next_speaker did not return a valid player.")
+    idx = 0
+    for next_speaker, trash in self.state.players.items():
+      idx+=1
+      #next_speaker = self.get_next_speaker()
+      #if not next_speaker:
+        #raise ValueError("get_next_speaker did not return a valid player.")
 
       player = self.state.players[next_speaker]
       dialogue, log = player.debate()
@@ -311,7 +299,6 @@ class GameMaster:
         (self.exile, ""),
         (self.check_for_winner, "Checking for a winner after Day Phase."),
         (self.run_summaries, "The Players are summarizing the debate."),
-        (self.run_deduction, "The Players are doing deductions."),
     ]:
       tqdm.tqdm.write(message)
       action()

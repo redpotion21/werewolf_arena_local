@@ -12,7 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 GAME = """You are playing a digital version of the social deduction game Werewolf (also known as Mafia).
 
 GAME RULES:
@@ -270,7 +269,8 @@ key information as evidence to support your deduction.
 ```json
 {
 "reasoning": your reflection and reasoning of your deduction,
-"player_i": {
+"deduction": {
+"name": name of the player you deduct
 "role": select the most likely hidden role of this player from ["Werewolf", "Seer", "Doctor", "Villager", "Uncertain"],
 "confidence": rate the confidence of your deduction from 5 (pure guess) to 10 (absolutely sure),
 "evidence": a short phrase of the key information
@@ -282,9 +282,10 @@ DEDUCTION_SCHEMA = {
     "type": "object",
     "properties": {
     "reasoning": { "type": "string" },
-    "player_1": {
+    "deduction": {
       "type": "object",
       "properties": {
+        "name": {"type": "string"},
         "role": { "type": "string", "enum": ["Werewolf", "Seer", "Doctor", "Villager", "Uncertain"]},
         "confidence": { "type": "integer", "minimum": 5, "maximum": 10 },
         "evidence": { "type": "string","items": { "type": "integer" }}
@@ -295,6 +296,46 @@ DEDUCTION_SCHEMA = {
     }
 }
 
+RECORD = PREFIX + DEBATE_SO_FAR_THIS_ROUND + """INSTRUCTIONS:
+Your goal is to extract key facts and classify each as either:
+
+- "trustworthy"
+- "suspicious"
+- "neutral"
+
+Return your output as a JSON **array** of objects. Each object must include:
+
+```json
+{
+"fact": a short description of the event or statement
+"classification": one of "trustworthy", "suspicious", or "neutral"
+"reasoning": a brief explanation of why you classified it that way
+"confidence": a percentage from 0 to 10 (as an integer)
+}
+"""
+
+
+RECORD_SCHEMA = {
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "fact": { "type": "string" },
+      "classification": {
+        "type": "string",
+        "enum": ["trustworthy", "neutral", "suspicious"]
+      },
+      "reasoning": { "type": "string" },
+      "confidence": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 10
+      }
+    },
+    "required": ["fact", "classification", "reasoning", "confidence"]
+  }
+}
+
 ACTION_PROMPTS_AND_SCHEMAS = {
     "bid": (BIDDING, BIDDING_SCHEMA),
     "debate": (DEBATE, DEBATE_SCHEMA),
@@ -303,5 +344,6 @@ ACTION_PROMPTS_AND_SCHEMAS = {
     "remove": (ELIMINATE, ELIMINATE_SCHEMA),
     "protect": (PROTECT, PROTECT_SCHEMA),
     "summarize": (SUMMARIZE, SUMMARIZE_SCHEMA),
-    "deduct": (DEDUCTION, DEDUCTION_SCHEMA)
+    "deduct": (DEDUCTION, DEDUCTION_SCHEMA),
+    "record": (RECORD, RECORD_SCHEMA)
 }

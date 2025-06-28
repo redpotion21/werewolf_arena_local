@@ -169,11 +169,12 @@ class GameMaster:
 
   def run_day_phase(self):
     """Run the day phase which consists of the debate and voting."""
-
-    for idx in range(MAX_DEBATE_TURNS):
-      next_speaker = self.get_next_speaker()
-      if not next_speaker:
-        raise ValueError("get_next_speaker did not return a valid player.")
+    idx = 0
+    for next_speaker, trash in self.state.players.items():
+      idx+=1
+      #next_speaker = self.get_next_speaker()
+      #if not next_speaker:
+        #raise ValueError("get_next_speaker did not return a valid player.")
 
       player = self.state.players[next_speaker]
       dialogue, log = player.debate()

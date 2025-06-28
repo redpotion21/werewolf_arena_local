@@ -1,7 +1,9 @@
-# Werewolf The Social Deduction Game
+# Fork of Werewolf The Social Deduction Game
+This is fork of werewolf arena with local ollama model options (https://github.com/google/werewolf_arena/tree/main/werewolf)
 This repository provides code for [Werewolf Arena](https://arxiv.org/abs/2407.13943) - a framework for evaluating the social reasoning skills of large language models (LLMs) through the game of Werewolf.
 
 ## Set up the environment
+First, install ollama
 
 ### Create a Python Virtual Environment
 You only need to do this once.
@@ -16,6 +18,7 @@ source ./venv/bin/activate
 
 ### Install Dependencies
 ```
+pip install ollama
 pip install -r requirements.txt
 ```
 
@@ -35,7 +38,10 @@ The program will read from this environment variable.
 
 ## Run a single game
 
-`python3 main.py --run --v_models=pro1.5 --w_models=gpt4`
+fitst, turn off ollama and run
+```ollama serve```
+then on other cmd
+```python3 main.py --run --v_models=phi4 --w_models=phi4```
 
 
 ## Run games between all model combinations
